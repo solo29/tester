@@ -66,13 +66,14 @@ export default {
     }
   },
   mounted() {
-    fetch("/subjects.json")
+    let prefix = process.env.NODE_ENV === "production" ? "/tester/dist/" : "/";
+    fetch(prefix + "subjects.json")
       .then(r => r.json())
       .then(x => {
         console.log(x);
         this.subjects = x;
       });
-    fetch("/tests.json")
+    fetch(prefix + "tests.json")
       .then(r => r.json())
       .then(x => {
         console.log(x);
